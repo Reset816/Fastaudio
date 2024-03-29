@@ -60,9 +60,9 @@ if __name__ == "__main__":
         sb.utils.distributed.ddp_init_group(run_opts)
         with open(hparams_file) as fin:
             hparams = load_hyperpyyaml(fin, overrides)
-        hparams_file = os.path.join(hparams['output_folder'], 'hyperparams.yaml')
-        with open(hparams_file) as fin:
-            hparams = load_hyperpyyaml(fin, overrides)
+        # hparams_file = os.path.join(hparams['output_folder'], 'hyperparams.yaml')
+        # with open(hparams_file) as fin:
+        #     hparams = load_hyperpyyaml(fin, overrides)
         hparams['batch_size'] = 1
         datasets = get_dataset(hparams)
         # Initialize the Brain object to prepare for mask training.
