@@ -7,13 +7,15 @@ from datasets.SpoofSpeechDataset import get_dataset
 import wandb
 
 if __name__ == "__main__":
-    TRAIN =True
 
-    if TRAIN:
+    if sys.argv[1] not in ["eval", "train"]:
+        raise ValueError(f"Invalid mode: {sys.argv[1]}. Expected 'eval' or 'train'.")
+    
+    if sys.argv[1] == 'train':
         wandb.init(project='asv')
         config = wandb.config
         # Reading command line arguments.
-        hparams_file, run_opts, overrides = sb.parse_arguments(sys.argv[1:])
+        hparams_file, run_opts, overrides = sb.parse_arguments(sys.argv[2:])
 
         # Initialize ddp (useful only for multi-GPU DDP training).
         sb.utils.distributed.ddp_init_group(run_opts)
@@ -55,8 +57,8 @@ if __name__ == "__main__":
             test_loader_kwargs=hparams["dataloader_options"],
         )
 
-    else:
-        hparams_file, run_opts, overrides = sb.parse_arguments(sys.argv[1:])
+    elif sys.argv[1] == 'eval':
+        hparams_file, run_opts, overrides = sb.parse_arguments(sys.argv[2:])
         sb.utils.distributed.ddp_init_group(run_opts)
         with open(hparams_file) as fin:
             hparams = load_hyperpyyaml(fin, overrides)

@@ -2,7 +2,8 @@
 __set_seed: !!python/object/apply:torch.manual_seed [!ref <seed>]
 
 data_folder: ./processed_data
-output_folder: !ref ./results/la_fastaudiogauss/<seed>
+model: model_place_order
+output_folder: !ref ./results/<model>/<seed>
 save_folder: !ref <output_folder>/save
 train_log: !ref <output_folder>/train_log.txt
 
