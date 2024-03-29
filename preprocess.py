@@ -29,9 +29,9 @@ if __name__ == '__main__':
     elif args['data_type'] == 'unlabeled':
         print('Start to process unlabeled data:')
 
-        create_non_label_eval_json(pro_file = '../data/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2021.LA.cm.eval.trl.txt',
+        create_non_label_eval_json(pro_file = '/data_hdd/lx20/ty_workspace/data/2021_silence/DF_21/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.eval.trl.txt',
                                    data_dir = '../data/LA/ASVspoof2021_LA_eval/flac/',
-                                   output_file = './processed_data/cm_eval_2021.json')
+                                   output_file = './processed_data/df_cm_eval_2021.json')
 
 
 

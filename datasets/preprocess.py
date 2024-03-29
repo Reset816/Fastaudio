@@ -136,11 +136,11 @@ def create_non_label_eval_json(pro_file = '../data/LA/ASVspoof2019_LA_cm_protoco
 
     j = {}
     for p in data:
-        p = p.replace('\n', '')
-        j[p] = {}
-        j[p]['file_path'] = '%s%s.flac'%(data_dir, p)
+        file = p.replace('\n', '').split(' ')[1]
+        j[file] = {}
+        j[file]['file_path'] = '%s%s.flac'%(data_dir, file)
         # Just for format
-        j[p]['key'] = 'spoof'
+        j[file]['key'] = p.replace('\n', '').split(' ')[-1]
 
     for k in j:
         signal = read_audio(j[k]['file_path'])
